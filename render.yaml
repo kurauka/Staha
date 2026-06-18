@@ -1,7 +1,7 @@
 services:
   - type: web
     name: staha-hub
-    runtime: php
+    runtime: docker # Changed from php to docker for better reliability
     plan: free
     envVars:
       - key: DB_HOST
@@ -18,10 +18,10 @@ services:
 
   - type: worker
     name: staha-scraper
-    runtime: php
+    runtime: php # Worker can stay as native php or use docker too
     plan: free
     buildCommand: echo "ready"
-    startCommand: while true; do php scripts/cron_update_jobs.php; sleep 21600; done # Run every 6 hours
+    startCommand: while true; do php scripts/cron_update_jobs.php; sleep 21600; done
     envVars:
       - fromService:
           type: web
