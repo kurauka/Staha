@@ -1,0 +1,9 @@
+{
+    "name": "kurauka/staha",
+    "description": "Professional Maritime Hub",
+    "type": "project",
+    "require": {
+        "php": "^8.0"
+    },
+    "license": "MIT"
+}

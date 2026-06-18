@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: staha-hub
+    runtime: php
+    plan: free
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        sync: false
+        default: 3306
+
+  - type: worker
+    name: staha-scraper
+    runtime: php
+    plan: free
+    buildCommand: echo "ready"
+    startCommand: while true; do php scripts/cron_update_jobs.php; sleep 21600; done # Run every 6 hours
+    envVars:
+      - fromService:
+          type: web
+          name: staha-hub
+          envVarKey: DB_HOST
+      - fromService:
+          type: web
+          name: staha-hub
+          envVarKey: DB_USER
+      - fromService:
+          type: web
+          name: staha-hub
+          envVarKey: DB_PASS
+      - fromService:
+          type: web
+          name: staha-hub
+          envVarKey: DB_NAME
+      - fromService:
+          type: web
+          name: staha-hub
+          envVarKey: DB_PORT
