@@ -1,0 +1,8 @@
+# Ignore uploads and temporary files
+uploads/
+*.log
+.DS_Store
+
+# DB credentials - usually you'd ignore config/db.php and use .env, 
+# but for this specific request I'll keep it simple unless requested otherwise.
+# config/db.php
