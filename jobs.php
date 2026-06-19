@@ -11,7 +11,7 @@ $query = "SELECT * FROM jobs WHERE 1=1";
 $params = [];
 
 if ($rank) {
-    $query .= " AND rank LIKE ?";
+    $query .= " AND `rank` LIKE ?";
     $params[] = "%$rank%";
 }
 if ($vessel) {

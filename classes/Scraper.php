@@ -114,12 +114,12 @@ class Scraper
     private function saveToDb($job)
     {
         // Check if job already exists by link
-        $stmt = $this->pdo->prepare("SELECT id FROM jobs WHERE link = ?");
+        $stmt = $this->pdo->prepare("SELECT `id` FROM `jobs` WHERE `link` = ?");
         $stmt->execute([$job['link']]);
         if ($stmt->fetch())
             return;
 
-        $stmt = $this->pdo->prepare("INSERT INTO jobs (title, company, vessel_type, rank, location, link, source, date_posted) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt = $this->pdo->prepare("INSERT INTO `jobs` (`title`, `company`, `vessel_type`, `rank`, `location`, `link`, `source`, `date_posted`) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
         $stmt->execute([
             $job['title'],
             $job['company'],

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rank = $_POST['rank'] ?? null;
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, rank) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO `users` (`name`, `email`, `password`, `role`, `rank`) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$name, $email, $password, $role, $rank]);
 
         header("Location: login.php?registered=1");
